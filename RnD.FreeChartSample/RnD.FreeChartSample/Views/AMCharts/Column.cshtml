@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "Column";
+}
+<div id="amChartsPage">
+    <div id="columnChartsZone">
+        <h2>
+            AM Charts Bar Sample</h2>
+        <div id="columnCharts" style="width: 100%; height: 500px;">
+        </div>
+    </div>
+    <hr />
+    <div id="columnChartsZone2">
+        <h2>
+            AM Charts Bar Sample</h2>
+        <div id="columnCharts2" style="width: 100%; height: 500px;">
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../Scripts/Chart.AMCharts/amcharts/amcharts.js"></script>
+<script type="text/javascript" src="../../Scripts/Chart.AMCharts/amcharts/serial.js"></script>
+<script type="text/javascript" src="../../Scripts/Chart.AMCharts/amcharts/themes/black.js"></script>
+<script>
+
+    var columnChart;
+
+    var columnChartData = [
+                {
+                    "country": "USA",
+                    "visits": 4025
+                },
+                {
+                    "country": "China",
+                    "visits": 1882
+                },
+                {
+                    "country": "Japan",
+                    "visits": 1809
+                },
+                {
+                    "country": "Germany",
+                    "visits": 1322
+                },
+                {
+                    "country": "UK",
+                    "visits": 1122
+                },
+                {
+                    "country": "France",
+                    "visits": 1114
+                },
+                {
+                    "country": "India",
+                    "visits": 984
+                },
+                {
+                    "country": "Spain",
+                    "visits": 711
+                },
+                {
+                    "country": "Netherlands",
+                    "visits": 665
+                },
+                {
+                    "country": "Russia",
+                    "visits": 580
+                },
+                {
+                    "country": "South Korea",
+                    "visits": 443
+                },
+                {
+                    "country": "Canada",
+                    "visits": 441
+                },
+                {
+                    "country": "Brazil",
+                    "visits": 395
+                },
+                {
+                    "country": "Italy",
+                    "visits": 386
+                },
+                {
+                    "country": "Australia",
+                    "visits": 384
+                },
+                {
+                    "country": "Taiwan",
+                    "visits": 338
+                },
+                {
+                    "country": "Poland",
+                    "visits": 328
+                }
+            ];
+
+
+    AmCharts.ready(function () {
+        // SERIAL CHART
+        columnChart = new AmCharts.AmSerialChart();
+        columnChart.dataProvider = columnChartData;
+        columnChart.categoryField = "country";
+        columnChart.startDuration = 1;
+
+        // AXES
+        // category
+        var categoryAxis = columnChart.categoryAxis;
+        categoryAxis.labelRotation = 90;
+        categoryAxis.gridPosition = "start";
+
+        // value
+        // in case you don't want to change default settings of value axis,
+        // you don't need to create it, as one value axis is created automatically.
+
+        // GRAPH
+        var graph = new AmCharts.AmGraph();
+        graph.valueField = "visits";
+        graph.balloonText = "[[category]]: <b>[[value]]</b>";
+        graph.type = "column";
+        graph.lineAlpha = 0;
+        graph.fillAlphas = 0.8;
+        columnChart.addGraph(graph);
+
+        // CURSOR
+        var columnChartCursor = new AmCharts.ChartCursor();
+        columnChartCursor.cursorAlpha = 0;
+        columnChartCursor.zoomable = false;
+        columnChartCursor.categoryBalloonEnabled = false;
+        columnChart.addChartCursor(columnChartCursor);
+
+        columnChart.creditsPosition = "top-right";
+
+        columnChart.write("columnCharts");
+    });
+
+
+    $(document).ready(function () {
+
+        var columnChartUrl;
+
+    });
+
+</script>
